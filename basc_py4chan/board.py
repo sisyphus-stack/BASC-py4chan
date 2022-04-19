@@ -215,9 +215,15 @@ class Board(object):
         """
         json = self._get_json(self._url.thread_list())
         return [thread['no'] for page in json for thread in page['threads']]
-        
-    def get_archived_threads(self):
-    	print("Test")
+
+	def get_archived_threads(self):
+		"""Return the ID of every every archived thread on given board.
+
+        Returns:
+            list of ints: List of IDs of every archived thread on this board.
+        """     
+        archived_threads = self._get_json(self._url.archived_thread_list())        
+        return archived_threads
 
     def get_all_threads(self, expand=False):
         """Return every thread on this board.
